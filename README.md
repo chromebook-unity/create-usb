@@ -1,4 +1,44 @@
-# Instructions to make an Ubuntu Unity ARM Chromebook USB
+# Instructions for use:
+
+# Use the prebuilt disk image (recommended)
+
+> These instructions are for the Kukui baseboard line of Chromebooks ONLY! You will also need sudo permissions, developer mode, and USB boot enabled.
+
+## 1. Downloading, extracting, and flashing the disk image
+
+First, we will need to download the image file.
+
+The link to the latest image is [placeholder](placeholder).
+
+Now, open up a terminal and type and ```cd``` into the directory where the downloaded image is.
+
+Then, type in ```cat ubuntu-unity.img.gz | gunzip | sudo dd of=/dev/TARGET```
+
+> Make sure to replace TARGET with the device node of your target USB/SD Card (eg. sda, sdb, mmcblk0).
+
+## 2. Booting into the USB/SD Card
+
+> Remember! This guide always assumes you have developer mode with usb booting enabled.
+
+Insert the USB/SD Card into one of the available USB ports (do not use a USB/SD Card dongle, it will not work!)
+                                                                                                   
+Then, turn on the computer and press CTRL+U to boot into the USB.
+
+> NOTE: The username is linux and the password is ubuntuunity
+
+Login with the username and password above.
+
+Once you reach the Unity Desktop, open up the terminal.
+
+Then, type in ```sudo bash /scripts/extend-rootfs.sh ```
+
+This will increase the size of the root partition from the default size of ~8GB and make it the highest it can go, to get the most disk space.
+
+## 3. Installing to internal storage (optional)
+
+Follow all of step 1, but replace TARGET with the device node of the internal storage (usually mmcblk0).
+
+# Make your own Ubuntu Unity USB/SD Card
 
 ## Supported Devices
 
