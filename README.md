@@ -1,5 +1,31 @@
 # Instructions for use:
 
+# Supported Devices
+
+## tested systems - working
+
+- hp chromebook 11a - kappa
+
+## untested systems
+
+- acer chromebook 311 (c722/c722t) - willow
+- asus chromebook cz1 - cerise
+- asus chromebook flip cz1 - stern
+- hp chromebook x360 11mk g3 ee - burnet
+- lenovo 100e chromebook (mt8183 version) - makomo
+- lenovo ideapad duet 10.1 chromebook - krane
+- acer chromebook spin cp311-3h - juniper
+- lenovo ideapad 3 chromebook 14 inch (mt8183 version) - fennel14
+- lenovo ideapad flex 3 chromebook (mt8183 version) - fennel
+- asus chromebook flip cm3 (mt8183 version) - damu
+- asus chromebook cm3 - kakadu
+- acer chromebook 314 (cb314-2h/cb314-2ht) - cozmo
+- acer chromebook 311 - kenzo
+- lenovo 10e chromebook tablet - kodama
+- asus chromebook detachable cz1 - katsu
+- hp chromebook 11mk g9 ee - burnet/esche
+
+
 # Use the prebuilt disk image (recommended)
 
 > These instructions are for the Kukui baseboard line of Chromebooks ONLY! You will also need sudo permissions, developer mode, and USB boot enabled.
@@ -8,7 +34,7 @@
 
 First, we will need to download the image file.
 
-The link to the latest image is [placeholder](placeholder).
+The link to the latest image is [located here](https://mega.nz/file/fYMATb5Q#qqGJ4vrkecRVWKscxhQ1kxS5uKA9Vl64hsRJG534QVs). Click on the link to download the image.
 
 Now, open up a terminal and type and ```cd``` into the directory where the downloaded image is.
 
@@ -39,32 +65,6 @@ This will increase the size of the root partition from the default size of ~8GB 
 Follow all of step 1, but replace TARGET with the device node of the internal storage (usually mmcblk0).
 
 # Make your own Ubuntu Unity USB/SD Card
-
-## Supported Devices
-
-### tested systems - working
-
-- hp chromebook 11a - kappa
-
-### untested systems
-
-- acer chromebook 311 (c722/c722t) - willow
-- asus chromebook cz1 - cerise
-- asus chromebook flip cz1 - stern
-- hp chromebook x360 11mk g3 ee - burnet
-- lenovo 100e chromebook (mt8183 version) - makomo
-- lenovo ideapad duet 10.1 chromebook - krane
-- acer chromebook spin cp311-3h - juniper
-- lenovo ideapad 3 chromebook 14 inch (mt8183 version) - fennel14
-- lenovo ideapad flex 3 chromebook (mt8183 version) - fennel
-- asus chromebook flip cm3 (mt8183 version) - damu
-- asus chromebook cm3 - kakadu
-- acer chromebook 314 (cb314-2h/cb314-2ht) - cozmo
-- acer chromebook 311 - kenzo
-- lenovo 10e chromebook tablet - kodama
-- asus chromebook detachable cz1 - katsu
-- hp chromebook 11mk g9 ee - burnet/esche
-
 
 ## 1. Flashing the USB
 
