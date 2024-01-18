@@ -62,7 +62,8 @@ clear
 echo "The Ubuntu Unity Conversion Script has finished..."
 echo ""
 echo "Rebooting in 10 seconds... (Press CTRL+C to cancel reboot)"
-echo "After rebooting, log back in, open the terminal, and run second.sh, in the same directory."
+echo "" 
+echo "After rebooting, at the login screen, click on the icon near the password field and select Unity, then log in. After that, open the terminal, and run second.sh, in the same directory."
 sleep 10
 systemctl reboot
 
