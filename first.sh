@@ -43,7 +43,7 @@ echo ""
 echo "Installing Unity Desktop..."
 sudo apt update
 sudo apt install ubuntu-unity-desktop -y --no-install-recommends
-sudo apt install unity-tweak-tool indicator-appmenu -y
+sudo apt install unity-tweak-tool indicator-app menu hud -y 
 sudo apt purge firefox-esr --autoremove -y
 sudo apt purge snapd --autoremove -y
 sudo apt install gnome-software -y
