@@ -1,3 +1,4 @@
+#!/bin/bash
 
 echo "Welcome to the Ubuntu Unity Conversion tool!"
 echo ""
@@ -37,10 +38,6 @@ echo ""
 echo "Setting root password..."
 sudo passwd
 echo ""
-echo "Removing XFCE and some remnants of GNOME..."
-sudo apt-get purge xfconf xfce4-utils xfwm4 xfce4-session xfdesktop4 exo-utils xfce4-panel xfce4-terminal gnome-system-tools thunar libxfce4ui* *xfce* --autoremove -y
-sudo apt purge gnome* --autoremove -y
-echo ""
 echo "Installing Unity Desktop..."
 sudo apt install ubuntu-unity-desktop -y
 sudo apt purge firefox-esr --autoremove -y
@@ -62,6 +59,7 @@ clear
 echo "The Ubuntu Unity Conversion Script has finished..."
 echo ""
 echo "Rebooting in 10 seconds... (Press CTRL+C to cancel reboot)"
+echo "After rebooting, log back in, open the terminal, and run second.sh, in the same directory."
 sleep 10
 systemctl reboot
 

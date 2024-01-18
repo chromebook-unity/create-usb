@@ -30,6 +30,8 @@ After that, open the terminal.
 
 Type in ``` sudo apt update && sudo apt install git -y ```. This command will install Git.
 
-Then, type in ```git clone https://github.com/aneeshlingala/unity-conversion && cd unity-conversion && bash convert.sh```
+Then, type in ```git clone https://github.com/aneeshlingala/unity-conversion && cd unity-conversion && bash first.sh```
 
 > NOTE: After running the script, the username is still linux. The password is whatever you have set when running the script.
+
+After the script reboots your computer, log back in, open the terminal, and run second.sh, in the same directory.
