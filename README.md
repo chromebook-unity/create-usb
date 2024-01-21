@@ -64,40 +64,32 @@ This will increase the size of the root partition from the default size of ~8GB 
 
 Follow all of step 1, but replace TARGET with the device node of the internal storage (usually mmcblk0).
 
-# Make your own Ubuntu Unity USB/SD Card
+# Make your own Ubuntu Unity image
 
-## 1. Flashing the USB
-
-> These instructions are for the Kukui baseboard line of Chromebooks ONLY! You will also need sudo permissions.
-
-Download the latest Hexdump0815 Imagebuilder Ubuntu image from here: [https://github.com/hexdump0815/imagebuilder/releases/download/230917-01/chromebook_kukui-aarch64-jammy.img.gz](https://github.com/hexdump0815/imagebuilder/releases/download/230917-01/chromebook_kukui-aarch64-jammy.img.gz)
-
-Extract the image with an archive manager of your choice (eg. file-roller, xarchiver, etc.) that supports img.gz archives.
-
-Then, open up a terminal. Go to the directory where the image is located in. Then flash the image with ``` sudo dd if=/dev/IMG of=/dev/TARGET ```
 
 > WARNING: THIS STEP WILL ERASE ALL DATA ON THE TARGET DRIVE!
 
-Make sure to replace IMG with the name of the image file, and replace TARGET with the device node you want to flash to (eg. sda, sdb, mmcblk0, etc.)
 
-## 2. Using the script
+## 1. Using the script
 
-> NOTE: This guide assumes you have Developer Mode and USB booting enabled already!
+> NOTE: This guide assumes you have qemu-user-static and git installed. To install it on Debian/Ubuntu, type in ```sudo apt install qemu-user-static git```
 
-Insert the USB/SD Card that you flashed the image onto and insert it into the USB port.
 
-Then, turn on the Chromebook and press CTRL+U to boot into the USB Drive.
-
-Once you reach the login screen, in the username field, type in linux, and in the password field type in changeme.
-
-Then, click on the network icon in the panel and connect to a Wi-Fi network.
-
-After that, open the terminal.
-
-Type in ``` sudo apt update && sudo apt install git -y ```. This command will install Git.
-
-Then, type in ```git clone https://github.com/chromebook-unity/create-usb && cd create-usb && bash first.sh```
+Fiest, type in ```sudo git clone https://github.com/chromebook-unity/create-usb && cd create-usb && sudo bash create-img.sh```, to clone the repository and run the image creation script.
 
 > NOTE: After running the script, the username is still linux. The password is whatever you have set when running the script.
 
-After the script reboots your computer, log back in, open the terminal, and run second.sh, in the same directory.
+## 2. Flashing the image
+
+Once the script finishes, the resulting image will be chromebook_kukui-aarch64-jammy.img
+
+To flash it, run ```sudo dd if=chromebook_kukui-aarch64-jammy.img of=TARGET```
+
+> Make sure to replace TARGET with the device node of your USB/SD Card (eg. sda, sdb, etc.).
+
+## 3. Booting into the image
+> Remember! This guide always assumes you have developer mode with usb booting enabled.
+
+After the script is done, insert the USB/SD Card into one of the available USB ports (do not use a USB/SD Card dongle, it will not work!)
+                                                                                                   
+Then, turn on the computer and press CTRL+U to boot into the USB.
