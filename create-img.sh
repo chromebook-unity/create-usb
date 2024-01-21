@@ -15,21 +15,21 @@ else
 fi
 
 cd ~
-HOME=$(pwd)
-MNT=/mount-ubuntu-unity
+HOME=/home/$(whoami)
+MNT=/ubuntu-unity
 IMG=${HOME}/chromebook_kukui-aarch64-jammy.img
 
 echo "Downloading Image..."
-sudo wget https://github.com/hexdump0815/imagebuilder/releases/download/230917-01/chromebook_kukui-aarch64-jammy.img.gz
-sudo gzip -d chromebook_kukui-aarch64-jammy.img.gz
+wget https://github.com/hexdump0815/imagebuilder/releases/download/230917-01/chromebook_kukui-aarch64-jammy.img.gz
+gzip -d chromebook_kukui-aarch64-jammy.img.gz
 
 
 echo "Mounting image..."
-
-sudo mkdir -p $MNT
-OFFSET=$(parted "$IMAGE" unit b print | grep "btrfs" | awk '{ print substr($2,0,length($2)-1) }')
-sudo mount -o loop,offset="$OFFSET" "$IMAGE" "$MNT"
-
+sudo mkdir $MNT
+OFFSET=$(/usr/sbin/parted "$HOME/chromebook_kukui-aarch64-jammy.img" unit b print | grep "btrfs" | awk '{ print substr($2,0,length($2)-1) }')
+OFFSET_BOOT=$(/usr/sbin/parted "$HOME/chromebook_kukui-aarch64-jammy.img" unit b print | grep "ext2" | awk '{ print substr($2,0,length($2)-1) }')
+sudo mount -o loop,offset="$OFFSET" "$IMG" "$MNT"
+sudo mount -o loop,offset="$OFFSET_BOOT" "$IMG" "$MNT/boot"
 
 sudo mount -t proc /proc "${MNT}/proc/"
 sudo mount --rbind /sys "${MNT}/sys/"
@@ -39,13 +39,11 @@ sudo mount --rbind /run $MNT/run/
 sudo chroot "${MNT} /bin/bash" <<EOF
 #!/bin/bash
 
-echo "Welcome to the Ubuntu Unity Conversion (chroot)!"
+echo "Welcome to the Ubuntu Unity Conversion Script (chroot)!"
 echo ""
 echo "Setting variables..."
 KERNEL=$(uname -r)
 ARCH=$(uname -m)
-echo ""
-echo "This script is best made for 8GB USBs/SD Cards if you want to package them into an image file (.img)."
 echo ""
 echo "Running a few checks..."
 
