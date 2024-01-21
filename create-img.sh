@@ -110,3 +110,12 @@ umount $MNT/proc
 umount -l $MNT/sys
 umount -l $MNT/dev
 umount -l $MNT/run
+
+echo "Imaging..."
+cd $CURRENT_DIR
+umount -l $MNT
+rmdir $MNT
+mv $IMAGE "ubuntu-unity-chromebook.img"
+md5sum "ubuntu-unity-chromebook.img" > "ubuntu-unity-chromebook.img.md5sum"
+rm -f "ubuntu-unity-chromebook.img.xz" && xz -k "ubuntu-unity-chromebook.img.img"
+md5sum "ubuntu-unity-chromebook.img.xz" > "ubuntu-unity-chromebook.img.xz.md5sum"
