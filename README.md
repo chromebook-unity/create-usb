@@ -56,7 +56,7 @@ Login with the username and password above.
 
 Once you reach the Unity Desktop, open up the terminal.
 
-Then, type in ```sudo bash /scripts/extend-rootfs.sh ```
+Then, type in ```sudo bash /scripts/extend-rootfs.sh```
 
 This will increase the size of the root partition from the default size of ~8GB and make it the highest it can go, to get the most disk space.
 
