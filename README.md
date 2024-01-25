@@ -36,7 +36,7 @@ First, we will need to download the image file.
 
 The link to the latest image is [located here](https://mega.nz/file/fYMATb5Q#qqGJ4vrkecRVWKscxhQ1kxS5uKA9Vl64hsRJG534QVs). Click on the link to download the image.
 
-Now, open up a terminal and type and ```cd``` into the directory where the downloaded image is.
+Now, open up a terminal and type and ```cd``` into the directory where the downloaded image is (usually ~/Downloads).
 
 Then, type in ```cat ubuntu-unity.img.gz | gunzip | sudo dd of=/dev/TARGET```
 
@@ -74,7 +74,7 @@ Download the latest Hexdump0815 Imagebuilder Ubuntu image from here: [https://gi
 
 Extract the image with an archive manager of your choice (eg. file-roller, xarchiver, etc.) that supports img.gz archives.
 
-Then, open up a terminal. Go to the directory where the image is located in. Then flash the image with ``` sudo dd if=/dev/IMG of=/dev/TARGET ```
+Then, open up a terminal. Go to the directory where the image is located in. Then flash the image with ```sudo dd if=/dev/IMG of=/dev/TARGET```
 
 > WARNING: THIS STEP WILL ERASE ALL DATA ON THE TARGET DRIVE!
 
@@ -96,8 +96,16 @@ After that, open the terminal.
 
 Type in ``` sudo apt update && sudo apt install git -y ```. This command will install Git.
 
-Then, type in ```git clone https://github.com/chromebook-unity/create-usb && cd create-usb && bash first.sh```
+Then, type in ```cd ~ && git clone https://github.com/chromebook-unity/create-usb && cd create-usb && bash first.sh```
 
 > NOTE: After running the script, the username is still linux. The password is whatever you have set when running the script.
 
 After the script reboots your computer, log back in, open the terminal, and run second.sh, in the same directory.
+
+## 3. Upgrading the system (optional but recommended)
+
+It is recommended to upgrade the image to the latest LTS (eg. 22.04) or the latest LTS Devel release (23.04, 23.10, etc.)
+
+To do this, open up a terminal window, and type in ```cd ~/create-usb && bash update-image.sh```
+
+Then, the script will run a few commands, and you will need to select the release you want to upgrade to.
