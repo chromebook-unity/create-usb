@@ -15,11 +15,13 @@ do
             echo "Upgrading to next LTS (ex. 22.04, etc.)"
             sudo sed -i 's/^\(Prompt=\).*$/\1lts/' /etc/update-manager/release-upgrades
             sudo do-release-upgrade
+            sudo apt clean
             ;;
         "Upgrade to next devel LTS release (ex. 23.04, 23.10, etc.)")
             echo "Upgrading to next devel LTS release (ex. 23.04, 23.10, etc.)"
             sudo sed -i 's/^\(Prompt=\).*$/\1normal/' /etc/update-manager/release-upgrades
             sudo do-release-upgrade
+            sudo apt clean
             ;;
         "Quit")
             echo "Quitting..."
