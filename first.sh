@@ -42,7 +42,7 @@ sudo passwd
 echo ""
 echo "Installing Unity Desktop..."
 sudo apt update
-sudo apt install ubuntu-unity-desktop -y --no-install-recommends
+sudo apt install ubuntu-unity-desktop notification-daemon -y --no-install-recommends
 sudo apt install unity-tweak-tool indicator-* hud -y 
 sudo apt purge firefox-esr --autoremove -y
 sudo apt purge snapd --autoremove -y
