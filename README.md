@@ -39,6 +39,7 @@ First, we will need to download the image file.
 ### Disk Image Releases
 
 [Ubuntu 22.04](https://mega.nz/file/fYMATb5Q#qqGJ4vrkecRVWKscxhQ1kxS5uKA9Vl64hsRJG534QVs)
+
 [Ubuntu 23.10](https://mega.nz/file/pDskzRDS#qDfSVIQ4XDH2jGlhSckdwDJYXEJEHZWJf11CC6lgfHA)
 
 
