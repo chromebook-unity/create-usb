@@ -45,6 +45,8 @@ First, we will need to download the image file. Download the image you want in t
 
 Now, open up a terminal and type and ```cd``` into the directory where the downloaded image is (usually ~/Downloads).
 
+> WARNING: The next step will ERASE all of the data on the target drive.
+
 Then, type in ```cat ubuntu-unity.img.gz | gunzip | sudo dd of=/dev/TARGET```
 
 > Make sure to replace TARGET with the device node of your target USB/SD Card (eg. sda, sdb, mmcblk0).
