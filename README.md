@@ -28,13 +28,19 @@
 
 # Use the prebuilt disk image (recommended)
 
+Note: You will need atleast a 16GB sized USB Drive/SD Card!
+
 > These instructions are for the Kukui baseboard line of Chromebooks ONLY! You will also need sudo permissions, developer mode, and USB boot enabled.
 
 ## 1. Downloading, extracting, and flashing the disk image
 
 First, we will need to download the image file.
 
-The link to the latest image is [located here](https://mega.nz/file/fYMATb5Q#qqGJ4vrkecRVWKscxhQ1kxS5uKA9Vl64hsRJG534QVs). Click on the link to download the image.
+### Disk Image Releases
+
+[Ubuntu 22.04](https://mega.nz/file/fYMATb5Q#qqGJ4vrkecRVWKscxhQ1kxS5uKA9Vl64hsRJG534QVs)
+[Ubuntu 23.10](https://mega.nz/file/pDskzRDS#qDfSVIQ4XDH2jGlhSckdwDJYXEJEHZWJf11CC6lgfHA)
+
 
 Now, open up a terminal and type and ```cd``` into the directory where the downloaded image is (usually ~/Downloads).
 
@@ -58,7 +64,7 @@ Once you reach the Unity Desktop, open up the terminal.
 
 Then, type in ```sudo bash /scripts/extend-rootfs.sh```
 
-This will increase the size of the root partition from the default size of ~8GB and make it the highest it can go, to get the most disk space.
+This will increase the size of the root partition from the default size of ~16GB and make it the highest it can go, to get the most disk space.
 
 ## 3. Installing to internal storage (optional)
 
