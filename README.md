@@ -118,3 +118,6 @@ It is recommended to upgrade the image to the latest LTS (eg. 22.04) or the late
 To do this, open up a terminal window, and type in ```cd ~/create-usb && bash update-image.sh```
 
 Then, the script will run a few commands, and you will need to select the release you want to upgrade to.
+
+## License Info
+Ubuntu Unity is under the GPLv3 license and includes components from other open-source projects, such as the Unity Desktop.
