@@ -36,7 +36,7 @@ Note: You will need atleast a 16GB sized USB Drive/SD Card!
 
 First, we will need to download the image file. Download the image you want in the "Disk Image Releases" section below (NOTE: Try to select the latest image).
 
-### Disk Image Releases
+### Disk Image Releases (Hosted on MEGA.nz)
 
 [Ubuntu 22.04](https://mega.nz/file/fYMATb5Q#qqGJ4vrkecRVWKscxhQ1kxS5uKA9Vl64hsRJG534QVs)
 
