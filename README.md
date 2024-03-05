@@ -40,7 +40,7 @@ First, we will need to download the image file. Download the image you want in t
 
 [Ubuntu 22.04](https://mega.nz/file/2McigCCK#qqGJ4vrkecRVWKscxhQ1kxS5uKA9Vl64hsRJG534QVs)
 
-[Ubuntu 23.10](https://mega.nz/file/pDskzRDS#qDfSVIQ4XDH2jGlhSckdwDJYXEJEHZWJf11CC6lgfHA)
+[Ubuntu 23.10](https://mega.nz/file/LEtk3RLb#BCBwhxv7yO6SKarAlZj54r4979ANJRtV3qY6-bAuejM)
 
 
 Now, open up a terminal and type and ```cd``` into the directory where the downloaded image is (usually ~/Downloads).
