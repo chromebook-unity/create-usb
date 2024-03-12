@@ -120,4 +120,4 @@ To do this, open up a terminal window, and type in ```cd ~/create-usb && bash up
 Then, the script will run a few commands, and you will need to select the release you want to upgrade to.
 
 ## License Info
-Ubuntu Unity is under the GPLv3 license and includes components from other open-source projects, such as the Unity Desktop.
+Ubuntu Unity is licensed under the GPLv3 license and includes components from other open-source projects, such as the Unity Desktop.
