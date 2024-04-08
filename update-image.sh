@@ -14,6 +14,6 @@ echo "The upgrading process has started!"
 
 sudo sed -i s/$OLD/$NEW/ /etc/apt/sources.list
 sudo apt-get update
-sudp apt dist-upgrade -y
+sudo apt dist-upgrade -y
 sudo apt autoremove -y
 
