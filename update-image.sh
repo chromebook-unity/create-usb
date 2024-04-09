@@ -7,7 +7,7 @@ sudo apt upgrade -y
 echo "Installing packages needed for upgrading..."
 sudo apt install update-manager-core -y
 PS3='What upgrade would you like to do? '
-options=("Upgrade to next LTS (ex. 22.04, etc.)" "Upgrade to a development release (CAN BE BUGGY)" "Upgrade to next devel LTS release (ex. 23.04, 23.10, etc.)" "Quit")
+options=("Upgrade to next LTS (ex. 22.04, etc.)" "Upgrade to the newest development release (CAN BE BUGGY)" "Upgrade to next devel LTS release (ex. 23.04, 23.10, etc.)" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
