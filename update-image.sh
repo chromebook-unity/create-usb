@@ -37,6 +37,8 @@ do
             if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
             then
                 echo "deb http://ports.ubuntu.com/ubuntu-ports $(lsb_release -cs)-proposed restricted main multiverse universe" | sudo tee /etc/apt/sources.list.d/ubuntu-$(lsb_release -cs)-proposed.list
+                sudo apt update
+                sudo apt upgrade -y --autoremove
             else
                 echo ""
             fi
