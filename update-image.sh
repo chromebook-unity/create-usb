@@ -33,6 +33,13 @@ do
             sudo rm -rf /etc/apt/sources.list.d/brave-browser-release.list*
             echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
             sudo apt update
+            read -r -p "Do you want to enable the proposed repo (NOTE: This repo can install buggy applications, however, it can have fixes for Unity to work with the version you have upgraded to. [y/N] " response
+            if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+            then
+                echo "deb http://ports.ubuntu.com/ubuntu-ports $(lsb_release -cs)-proposed restricted main multiverse universe" | sudo tee /etc/apt/sources.list.d/ubuntu-$(lsb_release -cs)-proposed.list
+            else
+                echo ""
+            fi
             echo "Type in 4 in the next prompt to exit."
             ;;
         "Upgrade to next devel LTS release (ex. 23.04, 23.10, etc.)")
