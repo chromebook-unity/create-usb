@@ -9,6 +9,9 @@ sudo apt install gnome-software -y
 echo "Removing GIMP to free up space..."
 sudo apt purge gimp --autoremove -y
 sudo apt clean
+echo "Cleaning Up..."
+cd ..
+sudo rm -rf create-usb
 echo "The second part of the Ubuntu Unity Conversion Script has finished..."
 echo "Rebooting in 10 seconds... (Press CTRL+C to cancel reboot)"
 sleep 10
