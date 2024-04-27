@@ -5,6 +5,7 @@
 ## tested systems - working
 
 - hp chromebook 11a - kappa
+- lenovo ideapad 3 chromebook 14 inch (mt8183 version) - fennel14
 
 ## untested systems
 
@@ -15,7 +16,6 @@
 - lenovo 100e chromebook (mt8183 version) - makomo
 - lenovo ideapad duet 10.1 chromebook - krane
 - acer chromebook spin cp311-3h - juniper
-- lenovo ideapad 3 chromebook 14 inch (mt8183 version) - fennel14
 - lenovo ideapad flex 3 chromebook (mt8183 version) - fennel
 - asus chromebook flip cm3 (mt8183 version) - damu
 - asus chromebook cm3 - kakadu
