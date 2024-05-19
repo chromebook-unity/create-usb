@@ -1,9 +1,15 @@
-CHROOT_DIR="/mnt/chroot/chroot"
-DOWNLOAD_DIR="/mnt/downloads"
+#!/usr/bin/env bash
+
 IMAGE="https://matix.li/2d364a4cc247"
 FILE_NAME="ubuntu-unity.img.gz"
 MOUNT_NODE="/dev/mapper/loop0"
 RESOLV_CONF="/etc/resolv.conf"
+
+sudo mkdir /mnt/chroot
+sudo mkdir /mnt/chroot/chroot
+sudo mkdir /mnt/chroot/downloads
+CHROOT_DIR="/mnt/chroot/chroot"
+DOWNLOAD_DIR="/mnt/chroot/downloads"
 
 read -r -p "Would you like to make a new chroot? [y/N] " response
 case "$response" in
@@ -30,7 +36,7 @@ case "$response" in
           echo "Installing and Setting up KpartX..."
           sudo apt install kpartx -y
           sudo kpartx -av $FILE_NAME
-          echo "Mounting Image File...""
+          echo "Mounting Image File..."
           sudo mount $(echo MOUNT_NODE)p4 $CHROOT_DIR
           sudo mount $(echo MOUNT_NODE)p3 $CHROOT_DIR/boot
           sudo mount -o bind /dev $CHROOT_DIR/dev
@@ -40,48 +46,42 @@ case "$response" in
           sudo mount -o bind /run $CHROOT_DIR/run
           sudo rm -rf $CHROOT_DIR/etc/resolv.conf
           sudo cp $RESOLV_CONF $CHROOT_DIR/etc/
-          echo "Chroot has been made successfully."
+          echo 'Chroot has been made successfully.'
         fi
         ;;
     *)
-        echo "Skipping..."
+        echo 'Skipping...'
         ;;
 esac
 
-read -r -p "Do you want chroot into the image? [y/N] " response
-case "$response" in
+read -r -p 'Do you want chroot into the image? [y/N] ' response
+case '$response' in
     [yY][eE][sS]|[yY]) 
-        echo "Okay, chrooting..."
+        echo 'Okay, chrooting...'
         sudo chroot $CHROOT_DIR /bin/bash
         ;;
     *)
-        echo "Skipping..."
+        echo 'Skipping...'
         ;;
 esac
 
-read -r -p "Do you want to image your chroot? (THIS KILLS IT) [y/N] " response
-case "$response" in
-    [yY][eE][sS]|[yY]) 
+read -r -p 'Do you want to image your chroot? (THIS KILLS IT!) [y/N]' response
+case '$response' in
+   [yY][eE][sS]|[yY])
         sudo umount $CHROOT_DIR/dev/pts
         sudo umount $CHROOT_DIR/*
         sudo umount $CHROOT_DIR
-        [[ "$(read -e -p 'Would you like to rename your final image? [y/N]> '; echo -n "Enter new file name:" && read NEW_NAME && sudo mv $DOWNLOAD_DIR/$FILE_NAME $DOWNLOAD_DIR/$(echo $NEW_NAME).img && set $FILE_NAME $(echo $NEW_NAME).img == [Yy]* ]]
-        read -p 'Would you like to compress your final image? [y/N]? ' answer
-        if [ "$answer" = 'Y'
-          -o "$answer" = 'YES'
-          -o "$answer" = 'Yes'
-          -o "$answer" = 'y'
-          -o "$answer" = 'yes'
-          -o "$answer" = '' ]; then
-          echo "Compressing Image..."
-          cd $DOWNLOAD_DIR
-          sudo gzip $DOWNLOAD_DIR/$(echo $NEW_NAME)
-          set $FILE_NAME $(echo $NEW_NAME).img.gz
+        read -p 'Would you like to rename your final image? [y/N]' prompt
+        if [[ $prompt =~ [yY](es)* ]]
+        then
+        echo -n 'Enter new file name:'
+        read NEW_NAME 
+        sudo mv $DOWNLOAD_DIR/$FILE_NAME $DOWNLOAD_DIR/$(echo $NEW_NAME).img 
+        set $FILE_NAME $(echo $NEW_NAME).img
+        read -p "Would you like to compress the final image? (y/n): " a;[ "$a" = "y" ]&&{ echo 'Compressing Image...'; cd $DOWNLOAD_DIR; sudo gzip $DOWNLOAD_DIR/$(echo $NEW_NAME); set $FILE_NAME $(echo $NEW_NAME).img.gz; }||echo "Cancelling..."
+        echo 'Exiting...'
         fi
-        echo "Exiting..."
-        ;;
-    *)
-        echo "End of options, exiting..."
-        exit
+         echo 'End of options, exiting...'
+         exit
         ;;
 esac
