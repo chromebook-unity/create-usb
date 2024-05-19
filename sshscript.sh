@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 CHROOT_DIR="/mnt/chroot/chroot"
 DOWNLOAD_DIR="/mnt/downloads"
 IMAGE="https://matix.li/2d364a4cc247"
@@ -67,8 +65,19 @@ case "$response" in
         sudo umount $CHROOT_DIR/dev/pts
         sudo umount $CHROOT_DIR/*
         sudo umount $CHROOT_DIR
-        [[ "$(read -e -p 'Would you like to rename your final image? [y/N]> '; echo -n "Enter new file name:" && read NEW_NAME && sudo mv $DOWNLOAD_DIR/$FILE_NAME $DOWNLOAD_DIR/$(echo $NEW_NAME).img.gz )" && set $FILE_NAME $(echo $NEW_NAME) == [Yy]* ]]
-        echo "Your image is located at $(echo $DOWNLOAD_DIR)/$(echo $FILE_NAME)"
+        [[ "$(read -e -p 'Would you like to rename your final image? [y/N]> '; echo -n "Enter new file name:" && read NEW_NAME && sudo mv $DOWNLOAD_DIR/$FILE_NAME $DOWNLOAD_DIR/$(echo $NEW_NAME).img && set $FILE_NAME $(echo $NEW_NAME).img == [Yy]* ]]
+        read -p 'Would you like to compress your final image? [y/N]? ' answer
+        if [ "$answer" = 'Y'
+          -o "$answer" = 'YES'
+          -o "$answer" = 'Yes'
+          -o "$answer" = 'y'
+          -o "$answer" = 'yes'
+          -o "$answer" = '' ]; then
+          echo "Compressing Image..."
+          cd $DOWNLOAD_DIR
+          sudo gzip $DOWNLOAD_DIR/$(echo $NEW_NAME)
+          set $FILE_NAME $(echo $NEW_NAME).img.gz
+        fi
         echo "Exiting..."
         ;;
     *)
