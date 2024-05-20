@@ -4,7 +4,7 @@ IMAGE="https://matix.li/2d364a4cc247"
 FILE_NAME="ubuntu-unity.img.gz"
 MOUNT_NODE="/dev/mapper/loop0"
 RESOLV_CONF="/etc/resolv.conf"
-
+IMG_NAME="ubuntu-unity.img"
 sudo mkdir /mnt/chroot
 sudo mkdir /mnt/chroot/chroot
 sudo mkdir /mnt/chroot/downloads
@@ -35,7 +35,7 @@ case "$response" in
           sudo gzip -d ./$FILE_NAME
           echo "Installing and Setting up KpartX..."
           sudo apt install kpartx -y
-          sudo kpartx -av $FILE_NAME
+          sudo kpartx -av $IMG_NAME
           echo "Mounting Image File..."
           sudo mount $(echo $MOUNT_NODE)p4 $CHROOT_DIR
           sudo mount $(echo $MOUNT_NODE)p3 $CHROOT_DIR/boot
