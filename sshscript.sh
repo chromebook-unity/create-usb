@@ -19,7 +19,7 @@ case "$response" in
           read -r -p "Response: [y/N] " response
           if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
           then
-              Okay, deleting directory...
+              echo "Okay, deleting directory..."
               sudo rm -rf $CHROOT_DIR
           else
               echo "ERROR: OPERATION HALTED!"
@@ -30,7 +30,7 @@ case "$response" in
           echo "Clearing Older Images in 10 seconds... (PRESS CTRL+C to QUIT)"
           sleep 10
           sudo rm -rf *
-          sudo wget $IMAGE
+          sudo wget $IMAGE --output-document=$FILE_NAME
           echo "Extracting Image..."
           sudo gzip -d ./$FILE_NAME
           echo "Installing and Setting up KpartX..."
