@@ -37,8 +37,8 @@ case "$response" in
           sudo apt install kpartx -y
           sudo kpartx -av $FILE_NAME
           echo "Mounting Image File..."
-          sudo mount $(echo MOUNT_NODE)p4 $CHROOT_DIR
-          sudo mount $(echo MOUNT_NODE)p3 $CHROOT_DIR/boot
+          sudo mount $(echo $MOUNT_NODE)p4 $CHROOT_DIR
+          sudo mount $(echo $MOUNT_NODE)p3 $CHROOT_DIR/boot
           sudo mount -o bind /dev $CHROOT_DIR/dev
           sudo mount -o bind /dev/pts $CHROOT_DIR/dev/pts
           sudo mount -o bind /proc $CHROOT_DIR/proc
