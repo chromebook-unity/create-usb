@@ -14,16 +14,15 @@ DOWNLOAD_DIR="/mnt/chroot/downloads"
 read -r -p "Would you like to make a new chroot? [y/N] " response
 case "$response" in
     [yY][eE][sS]|[yY]) 
-        if [ -d "$CHROOT_DIR" ]; then
+        if [ ! -d "$CHROOT_DIR" ]; then
           echo "WARNING: THERE IS ALREADY A DIRECTORY LOCATED AT $(echo $CHROOT_DIR), DO YOU WANT TO DELETE THIS DIRECTORY?"
           read -r -p "Response: [y/N] " response
           if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
-          then
               echo "Okay, deleting directory..."
               sudo rm -rf $CHROOT_DIR
           else
-              echo "ERROR: OPERATION HALTED!"
-              exit
+              echo "Making directory $(echo $CHROOT_DIR).."
+              sudo mkdir $CHROOT_DIR
           fi
           echo "Downloading Image..."
           cd $DOWNLOAD_DIR
