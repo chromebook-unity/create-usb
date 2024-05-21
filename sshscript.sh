@@ -5,9 +5,7 @@ FILE_NAME="ubuntu-unity.img.gz"
 MOUNT_NODE="/dev/mapper/loop0"
 RESOLV_CONF="/etc/resolv.conf"
 IMG_NAME="ubuntu-unity.img"
-sudo mkdir /mnt/chroot
-sudo mkdir /mnt/chroot/chroot
-sudo mkdir /mnt/chroot/downloads
+BASE_FOLDER="/mnt/chroot"
 CHROOT_DIR="/mnt/chroot/chroot"
 DOWNLOAD_DIR="/mnt/chroot/downloads"
 
@@ -22,7 +20,9 @@ case "$response" in
               sudo rm -rf $CHROOT_DIR
           else
               echo "Making directory $(echo $CHROOT_DIR).."
+              sudo mkdir $BASE_FOLDER
               sudo mkdir $CHROOT_DIR
+              
           fi
           echo "Downloading Image..."
           cd $DOWNLOAD_DIR
