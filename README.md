@@ -30,7 +30,7 @@
 
 Note: You will need atleast a 16GB sized USB Drive/SD Card!
 
-> These instructions are for the Kukui baseboard line of Chromebooks ONLY! You will also need sudo permissions, developer mode, and USB boot enabled.
+> These instructions are for the mt8183 (and mt8173 coming soon) line of Chromebooks ONLY! You will also need sudo permissions, developer mode, and USB boot enabled.
 
 ## 1. Downloading, extracting, and flashing the disk image
 
