@@ -111,13 +111,5 @@ Then, type in ```cd ~ && git clone https://github.com/chromebook-unity/create-us
 
 After the script reboots your computer, log back in, open the terminal, and run second.sh, in the same directory.
 
-## 3. Upgrading the system (optional but recommended)
-
-It is recommended to upgrade the image to the latest LTS (eg. 22.04) or the latest LTS Devel release (23.04, 23.10, etc.)
-
-To do this, open up a terminal window, and type in ```cd ~/create-usb && bash update-image.sh```
-
-Then, the script will run a few commands, and you will need to select the release you want to upgrade to.
-
 ## License Info
 Ubuntu Unity is licensed under the GPLv3 license and includes components from other open-source projects, such as the Unity Desktop.
