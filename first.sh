@@ -30,16 +30,6 @@ else
     echo "Error: This script is only meant for ARM64 Chromebooks!"
     exit
 fi
-
-echo "Extending rootfs..."
-sudo bash /scripts/extend-rootfs.sh
-echo ""
-echo "Setting password for user linux..."
-passwd
-echo ""
-echo "Setting root password..."
-sudo passwd
-echo ""
 echo "Installing Unity Desktop..."
 sudo apt update
 sudo apt install ubuntu-unity-desktop notification-daemon -y --no-install-recommends
@@ -64,7 +54,6 @@ echo "The Ubuntu Unity Conversion Script has finished..."
 echo ""
 echo "Rebooting in 10 seconds... (Press CTRL+C to cancel reboot)"
 echo "" 
-echo "After rebooting, at the login screen, click on the icon near the password field and select Unity, then log in. After that, open the terminal, and run second.sh, in the same directory."
 sleep 10
 systemctl reboot
 
