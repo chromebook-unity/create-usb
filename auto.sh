@@ -174,7 +174,9 @@ chroot ${BUILD_ROOT} apt-get -y auto-remove
 chroot ${BUILD_ROOT} apt-get -y clean
 
 chroot ${BUILD_ROOT} ldconfig
-
+cd ${BUILD_ROOT}
+wget https://github.com/chromebook-unity/create-usb/raw/refs/heads/main/first.sh
+chroot ${BUILD_ROOT} /first.sh
 cd ${WORKDIR}
 truncate -s 6000M ${IMAGE_DIR}/ubuntuunity-$rel-$mtk-$(date +"%B-%d-%Y").img
 losetup /dev/loop0 ${IMAGE_DIR}/ubuntuunity-$rel-$mtk-$(date +"%B-%d-%Y").img
