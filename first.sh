@@ -1,12 +1,11 @@
 #!/bin/bash
 
-echo "Welcome to the Ubuntu Unity Conversion tool!"
+echo "Installing Unity onto the chroot"
 echo ""
 echo "Setting variables..."
 KERNEL=$(uname -r)
 ARCH=$(uname -m)
 echo ""
-echo "This script is best made for 8GB USBs/SD Cards if you want to package them into an image file (.img)."
 echo ""
 echo "Running a few checks..."
 
@@ -23,14 +22,7 @@ else
   echo "Error: You are offline."
   exit
 fi
-
-if [[ "$ARCH" == "aarch64" ]]; then
-    echo "Running on aarch64, continuing..."
-else
-    echo "Error: This script is only meant for ARM64 Chromebooks!"
-    exit
-fi
-echo "Installing Unity Desktop..."
+"Installing Unity Desktop..."
 sudo apt update
 sudo apt install ubuntu-unity-desktop notification-daemon -y --no-install-recommends
 sudo apt install unity-tweak-tool indicator-* hud -y 
@@ -47,6 +39,9 @@ sudo apt install brave-browser -y
 echo ""
 echo "Setting Hostname to ubuntu-unity..."
 sudo hostnamectl set-hostname ubuntu-unity
+echo "Removing GIMP to free up space..."
+sudo apt purge gimp --autoremove -y
+sudo apt clean
 echo ""
 sleep 7
 clear
