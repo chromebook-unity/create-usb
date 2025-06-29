@@ -1,8 +1,8 @@
 rel=noble
 
 if [[ "$EUID" -ne 0 ]]; then
-    echo "This script must be run as root"
-    exit 1
+    echo "Script not ran as root, please enter your password to enter root.."
+    sudo su
 fi
 # Some parts of script taken from imagebuilder repo by hexdump0815
 export DEBIAN_FRONTEND=noninteractive
