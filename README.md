@@ -72,6 +72,8 @@ This will increase the size of the root partition from the default size of ~16GB
 ## 3. Installing to internal storage (optional)
 
 Follow all of step 1, but replace TARGET with the device node of the internal storage (usually mmcblk0).
+> If anything goes wrong, or it's unbootable, reinstall chromeOS, or boot your Ubuntu Unity USB drive to fix it.
+> Don't hesitate on installing it to the eMMC storage, it wont fail as long you do it right. 
 
 # Make your own Ubuntu Unity Image
 Run auto.sh from this repository (on Ubuntu/Debian!) and flash the image generated to a USB Drive or SD Card. You can also tweak the script, like changing the Ubuntu version, kernel, etc.
