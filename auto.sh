@@ -22,9 +22,15 @@ export WORKDIR=`pwd`
 mkdir cache
 mkdir download
 mkdir root
+mkdir mnt
+mkdir out
 export BUILD_ROOT=root/
 export BUILD_ROOT_CACHE=cache/
 export DOWNLOAD_DIR=download/
+export MOUNT_POINT=mnt/
+export IMAGE_DIR=out/
+BOOTPARTLABEL="bootpart"
+ROOTPARTLABEL="rootpart"
 apt install binfmt-support qemu-user-binfmt qemu-user-static -y
 systemctl start binfmt-support.service
 if [ -d ${BUILD_ROOT} ]; then
@@ -170,7 +176,64 @@ chroot ${BUILD_ROOT} apt-get -y clean
 chroot ${BUILD_ROOT} ldconfig
 
 cd ${WORKDIR}
-
+truncate -s 6000M ${IMAGE_DIR}/ubuntuunity-$rel-$mtk-$(date +"%B-%d-%Y").img
+losetup /dev/loop0 ${IMAGE_DIR}/ubuntuunity-$rel-$mtk-$(date +"%B-%d-%Y").img
 umount ${BUILD_ROOT}/proc ${BUILD_ROOT}/sys ${BUILD_ROOT}/dev/pts ${BUILD_ROOT}/dev
+sgdisk -Z /dev/loop0
+partprobe /dev/loop0
+
+  # create a fresh partition table and reread it via partprobe
+sgdisk -C -e -G /dev/loop0
+partprobe /dev/loop0
+
+  # create the chomeos partition structure and reread it via partprobe
+cgpt create /dev/loop0
+partprobe /dev/loop0
 
 
+cgpt add -i 1 -t kernel -b 8192 -s 262144 -l KernelA -S 1 -T 2 -P 10 /dev/loop0
+cgpt add -i 2 -t kernel -b 270336 -s 262144 -l KernelB -S 0 -T 2 -P 5 /dev/loop0
+
+# this is to make sure we really use the new partition table and have all partitions around
+partprobe /dev/loop0
+
+mkfs -t ext4 -O ^has_journal -m 0 -L $BOOTPARTLABEL /dev/loop0p$BOOTPART
+
+mkfs -t btrfs -m single -L $ROOTPARTLABEL /dev/loop0p$ROOTPART
+mount -o ssd,compress-force=zstd,noatime,nodiratime /dev/loop0p$ROOTPART ${MOUNT_POINT}
+
+mkdir ${MOUNT_POINT}/boot
+mount /dev/loop0p$BOOTPART ${MOUNT_POINT}/boot
+
+echo "copying over the root fs to the target image - this may take a while ..."
+date
+rsync -axADHSX --no-inc-recursive ${BUILD_ROOT}/ ${MOUNT_POINT}
+date
+echo "done"
+
+btrfs subvolume create ${MOUNT_POINT}/swap
+chmod 755 ${MOUNT_POINT}/swap
+chattr -R +C ${MOUNT_POINT}/swap
+truncate -s 0 ${MOUNT_POINT}/swap/file.0
+fallocate -l 512M ${MOUNT_POINT}/swap/file.0
+chmod 600 ${MOUNT_POINT}/swap/file.0
+mkswap -L swapfile.0 ${MOUNT_POINT}/swap/file.0
+mount -o bind /dev ${MOUNT_POINT}/dev
+mount -o bind /dev/pts ${MOUNT_POINT}/dev/pts
+mount -o bind /run ${MOUNT_POINT}/run
+mount -t sysfs /sys ${MOUNT_POINT}/sys
+mount -t proc /proc ${MOUNT_POINT}/proc
+cd ${MOUNT_POINT}/boot
+dd if=*vmlinux.kpart* of=/dev/loop0p1 bs=1M status=progress
+dd if=*vmlinux.kpart* of=/dev/loop0p2 bs=1M status=progress
+sudo touch ${MOUNT_POINT}/etc/fstab
+echo "LABEL=$ROOTPARTLABEL / btrfs defaults,ssd,compress-force=zstd,noatime,nodiratime 0 1" | tee -a ${MOUNT_POINT}/etc/fstab
+echo "LABEL=$BOOTPARTLABEL /boot ext4 defaults,noatime,nodiratime,errors=remount-ro 0 2" | tee -a ${MOUNT_POINT}/etc/fstab
+sed -i 's,LABEL=swappart,/swap/file.0,g' ${MOUNT_POINT}/etc/fstab
+echo "Cleaning up..."
+umount ${MOUNT_POINT}/boot
+umount ${MOUNT_POINT}
+losetup -d /dev/loop0
+rmdir ${MOUNT_POINT}
+echo "Done. Your image is located at ${IMAGE_DIR}/ubuntuunity-$rel-$mtk-$(date +"%B-%d-%Y").img"
+echo "Summary: Ubuntu Unity $rel, built for $mtk, on $(date +"%B-%d-%Y")"
