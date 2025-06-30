@@ -28,38 +28,40 @@
 
 # Use the prebuilt disk image (recommended)
 
-Note: You will need atleast a 16GB sized USB Drive/SD Card!
+Note: You will need atleast a 8GB sized USB Drive/SD Card!
 
-> These instructions are for the mt8183 (and mt8173 coming soon) line of Chromebooks ONLY! You will also need sudo permissions, developer mode, and USB boot enabled.
+> These instructions are for the mt8183 and mt8173 line of Chromebooks ONLY! You will also need root, developer mode, and USB boot enabled.
 
-## 1. Downloading, extracting, and flashing the disk image
+## 1. Downloading and flashing the disk image 
 
 First, we will need to download the image file. Download the image you want in the "Disk Image Releases" section below (NOTE: Try to select the latest image).
 
 ### Disk Image Releases (Hosted on MEGA.nz)
 
-[Ubuntu 22.04](https://mega.nz/file/2McigCCK#qqGJ4vrkecRVWKscxhQ1kxS5uKA9Vl64hsRJG534QVs)
+[Ubuntu 22.04 (DEPRECATED - USE 24.04)](https://mega.nz/file/2McigCCK#qqGJ4vrkecRVWKscxhQ1kxS5uKA9Vl64hsRJG534QVs)
 
 [Ubuntu 23.10 - Wi-Fi BROKEN - DO NOT USE](https://mega.nz/file/LEtk3RLb#BCBwhxv7yO6SKarAlZj54r4979ANJRtV3qY6-bAuejM)
 
 
-Now, open up a terminal and type and ```cd``` into the directory where the downloaded image is (usually ~/Downloads).
+Now, open up a terminal and ```cd``` into the directory where the downloaded image is (usually ~/Downloads).
 
 > WARNING: THIS STEP WILL ERASE ALL DATA ON THE TARGET DRIVE!
 
-Then, type in ```cat ubuntu-unity.img.gz | gunzip | sudo dd of=/dev/TARGET```
+Then, type in ```sudo dd if=[your image location] of=/dev/TARGET bs=1M status=progress```
+For Ubuntu 22.04 and 23.10 images (UNSUPPORTED!), run ```cat ubuntu-unity.img.gz | gunzip | sudo dd of=/dev/TARGET```
 
-> Make sure to replace TARGET with the device node of your target USB/SD Card (eg. sda, sdb, mmcblk0).
+> Make sure to replace TARGET with the device node of your target USB/SD Card (eg. sda, sdb, mmcblk0), and replace your image location with where your image is located. 
 
 ## 2. Booting into the USB/SD Card
 
 > Remember! This guide always assumes you have developer mode with usb booting enabled.
 
-Insert the USB/SD Card into one of the available USB ports (do not use a USB/SD Card dongle, it will not work!)
+Insert the USB/SD Card you flashed into one of the available USB ports (do not use a USB/SD Card dongle, it will not work!)
                                                                                                    
 Then, turn on the computer and press CTRL+U to boot into the USB.
 
-> NOTE: The username is linux and the password is ubuntuunity
+> NOTE: The username is unity and the password is ubuntu
+> For Ubuntu 22.04 and 23.10 images, username is linux and password is ubuntuunity
 
 Login with the username and password above.
 
@@ -67,7 +69,7 @@ Once you reach the Unity Desktop, open up the terminal.
 
 Then, type in ```sudo bash /scripts/extend-rootfs.sh```
 
-This will increase the size of the root partition from the default size of ~16GB and make it the highest it can go, to get the most disk space.
+This will increase the size of the root partition from the default size of ~8GB and make it the highest it can go, to utilize the most disk space.
 
 ## 3. Installing to internal storage (optional)
 
