@@ -48,7 +48,6 @@ fi
 DEFAULT_USERNAME=unity
 root=LABEL=unityroot
 
-
 BOOTSTRAP_ARCH="arm64"
 SERVER_PREFIX="ports."
 SERVER_POSTFIX=""
@@ -158,7 +157,7 @@ if [[ "$mtk" == "mt8183" ]]; then
     cd ${BUILD_ROOT}
     wget https://github.com/velvet-os/imagebuilder/raw/refs/heads/main/systems/chromebook_kukui/postinstall.sh
 fi
-
+sudo chmod +x ${BUILD_ROOT}/postinstall.sh
 sudo chroot ${BUILD_ROOT} /postinstall.sh
 rm -rf ${BUILD_ROOT}/postinstall.sh
 
