@@ -103,7 +103,7 @@ if [[ "$mtk" == "mt8173" ]]; then
       echo "" >> etc/rc.local
       wget https://github.com/velvet-os/imagebuilder/blob/main/systems/chromebook_oak/rc-local-additions.txt
       cat rc-local-additions.txt >> etc/rc.local
-      rm -rf rc-locat-additions.txt
+      rm -rf rc-local-additions.txt
 fi
 
 echo "" >> etc/rc.local
