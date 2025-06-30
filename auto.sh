@@ -63,7 +63,7 @@ mount -t sysfs /sys ${BUILD_ROOT_CACHE}/sys
 mount -t proc /proc ${BUILD_ROOT_CACHE}/proc
 cp /etc/resolv.conf ${BUILD_ROOT_CACHE}/etc/resolv.conf
 cp /proc/mounts ${BUILD_ROOT_CACHE}/etc/mtab
-echo "apt update && apt upgrade -y && apt-get -yq install locales vim openssh-server ssh-askpass sudo net-tools ifupdown iputils-ping kmod less rsync u-boot-tools usbutils dosfstools mesa-utils mesa-utils-extra console-data xubuntu-desktop linux-firmware lvm2 cryptsetup-bin cryptsetup-initramfs slick-greeter rsyslog btrfs-progs btrfs-compsize dialog cgpt lz4 vboot-kernel-utils plymouth plymouth-label plymouth-theme-xubuntu-logo plymouth-theme-xubuntu-text xserver-xorg-video-fbdev xinput rfkill curl gnome-system-tools gnome-system-monitor iptables firmware-sof-signed git strace glmark2 pwgen fdisk gdisk libglib2.0-bin initramfs-tools network-manager" | tee cache/post.sh
+echo "apt update && apt upgrade -y && apt-get -yq install locales vim openssh-server ssh-askpass sudo net-tools ifupdown iputils-ping kmod less rsync u-boot-tools usbutils dosfstools mesa-utils mesa-utils-extra console-data linux-firmware lvm2 cryptsetup-bin cryptsetup-initramfs slick-greeter rsyslog btrfs-progs btrfs-compsize dialog cgpt lz4 vboot-kernel-utils -label xserver-xorg-video-fbdev xinput rfkill curl gnome-system-tools gnome-system-monitor iptables firmware-sof-signed git strace glmark2 pwgen fdisk gdisk libglib2.0-bin initramfs-tools network-manager" | tee cache/post.sh
 chmod +x ${BUILD_ROOT_CACHE}/post.sh
 sudo chroot ${BUILD_ROOT_CACHE} /post.sh
 rm -rf ${BUILD_ROOT_CACHE}/post.sh
