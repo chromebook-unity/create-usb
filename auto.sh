@@ -90,7 +90,6 @@ rm -rf post2.sh
 wget https://github.com/hexdump0815/linux-mainline-mediatek-mt81xx-kernel/releases/download/6.12.28-stb-cbm%2B/6.12.28-stb-cbm+.tar.gz
 tar -xvf 6.12.28-stb-cbm+.tar.gz
 if [[ "$mtk" == "mt8183" ]]; then
-      wget https://github.com/velvet-os/imagebuilder/raw/refs/heads/main/systems/chromebook_kukui/rc-local-additions.txt
       echo "" >> etc/rc.local
       echo "# additions for ${1}" >> etc/rc.local
       echo "" >> etc/rc.local
@@ -99,12 +98,12 @@ if [[ "$mtk" == "mt8183" ]]; then
 fi
 
 if [[ "$mtk" == "mt8173" ]]; then
-      wget https://github.com/velvet-os/imagebuilder/raw/refs/heads/main/systems/chromebook_kukui/rc-local-additions.txt
       echo "" >> etc/rc.local
       echo "# additions for ${1}" >> etc/rc.local
       echo "" >> etc/rc.local
       wget https://github.com/velvet-os/imagebuilder/blob/main/systems/chromebook_oak/rc-local-additions.txt
       cat rc-local-additions.txt >> etc/rc.local
+      rm -rf rc-locat-additions.txt
 fi
 
 echo "" >> etc/rc.local
