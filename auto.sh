@@ -33,12 +33,6 @@ BOOTPARTLABEL="bootpart"
 ROOTPARTLABEL="rootpart"
 apt install binfmt-support qemu-user-binfmt qemu-user-static -y
 systemctl start binfmt-support.service
-if [ -d ${BUILD_ROOT} ]; then
-  echo ""
-  echo "build root ${BUILD_ROOT} already exists - giving up for safety reasons ..."
-  echo ""
-  exit 1
-fi
 
 if [[ "$mtk" == "mt8183" ]]; then
     wget https://github.com/velvet-os/imagebuilder/raw/refs/heads/main/systems/chromebook_kukui/partition-mapping.txt
