@@ -31,7 +31,7 @@ export MOUNT_POINT=mnt/
 export IMAGE_DIR=out/
 BOOTPARTLABEL="bootpart"
 ROOTPARTLABEL="rootpart"
-apt install binfmt-support qemu-user-binfmt qemu-user-static -y
+apt install binfmt-support qemu-user-static -y
 systemctl start binfmt-support.service
 
 if [[ "$mtk" == "mt8183" ]]; then
