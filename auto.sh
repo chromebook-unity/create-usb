@@ -95,6 +95,7 @@ if [[ "$mtk" == "mt8183" ]]; then
       echo "" >> etc/rc.local
       wget https://github.com/velvet-os/imagebuilder/raw/refs/heads/main/systems/chromebook_kukui/rc-local-additions.txt
       cat rc-local-additions.txt >> etc/rc.local
+      rm -rf rc-local-additions.txt
 fi
 
 if [[ "$mtk" == "mt8173" ]]; then
