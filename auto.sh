@@ -82,7 +82,7 @@ mount -t proc /proc ${BUILD_ROOT}/proc
 # do this to avoid failing apt installs due to a too old fs-cache
 sudo chroot ${BUILD_ROOT} apt-get update
 
-echo "systemctl disable fwupd.service && systemctl disable fwupd-refresh.service && systemctl disable apt-daily && systemctl disable apt-daily-upgrade && systemctl disable apt-daily-upgrade.timer && systemctl disable unattended-upgrades.service && sed -i 's,Update-Package-Lists "1",Update-Package-Lists "0",g' /etc/apt/apt.conf.d/10periodic && sed -i 's,Update-Package-Lists "1",Update-Package-Lists "0",g;s,Unattended-Upgrade "1",Unattended-Upgrade "0",g' /etc/apt/apt.conf.d/20auto-upgrades && useradd -c unity -d /home/unity -m -s /bin/bash unity && echo "unity:ubuntu" | sudo chpasswd && usermod -a -G sudo unity && usermod -a -G audio unity && usermod -a -G video unity && usermod -a -G render unity && apt-get -yq remove snapd dmidecode && apt-get -yq auto-remove" | tee root/post2.sh
+echo "useradd -c unity -d /home/unity -m -s /bin/bash unity && echo "unity:ubuntu" | sudo chpasswd && usermod -a -G sudo unity && usermod -a -G audio unity && usermod -a -G video unity && usermod -a -G render unity && apt-get -yq remove snapd dmidecode && apt-get -yq auto-remove" | tee root/post2.sh
 sudo chmod +x ${BUILD_ROOT}/post2.sh
 sudo chroot ${BUILD_ROOT} /post2.sh
 cd ${BUILD_ROOT}/
