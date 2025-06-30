@@ -80,10 +80,10 @@ mount -t sysfs /sys ${BUILD_ROOT}/sys
 mount -t proc /proc ${BUILD_ROOT}/proc
 
 # do this to avoid failing apt installs due to a too old fs-cache
-chroot ${BUILD_ROOT} apt-get update
+sudo chroot ${BUILD_ROOT} apt-get update
 
 echo "systemctl disable fwupd.service && systemctl disable fwupd-refresh.service && systemctl disable apt-daily && systemctl disable apt-daily-upgrade && systemctl disable apt-daily-upgrade.timer && systemctl disable unattended-upgrades.service && sed -i 's,Update-Package-Lists "1",Update-Package-Lists "0",g' /etc/apt/apt.conf.d/10periodic && sed -i 's,Update-Package-Lists "1",Update-Package-Lists "0",g;s,Unattended-Upgrade "1",Unattended-Upgrade "0",g' /etc/apt/apt.conf.d/20auto-upgrades && useradd -c unity -d /home/unity -m -s /bin/bash unity && echo "unity:ubuntu" | sudo chpasswd && usermod -a -G sudo unity && usermod -a -G audio unity && usermod -a -G video unity && usermod -a -G render unity && apt-get -yq remove snapd dmidecode && apt-get -yq auto-remove" | tee root/post2.sh
-chroot ${BUILD_ROOT} /post2.sh
+sudo chroot ${BUILD_ROOT} /post2.sh
 cd ${BUILD_ROOT}/
 rm -rf post2.sh
 wget https://github.com/hexdump0815/linux-mainline-mediatek-mt81xx-kernel/releases/download/6.12.28-stb-cbm%2B/6.12.28-stb-cbm+.tar.gz
@@ -158,18 +158,18 @@ if [[ "$mtk" == "mt8183" ]]; then
     wget https://github.com/velvet-os/imagebuilder/raw/refs/heads/main/systems/chromebook_kukui/postinstall.sh
 fi
 
-chroot ${BUILD_ROOT} /postinstall-chroot.sh
+sudo chroot ${BUILD_ROOT} /postinstall-chroot.sh
 rm -rf ${BUILD_ROOT}/postinstall-chroot.sh
 
 # recompile glib schemas to enable our onboard settings
-chroot ${BUILD_ROOT} glib-compile-schemas /usr/share/glib-2.0/schemas/
+sudo chroot ${BUILD_ROOT} glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 # remove libreoffice and do a final cleanup to get the size of the image down a bit
-chroot ${BUILD_ROOT} apt-get -y remove --purge libreoffice*
-chroot ${BUILD_ROOT} apt-get -y auto-remove
-chroot ${BUILD_ROOT} apt-get -y clean
+sudo chroot ${BUILD_ROOT} apt-get -y remove --purge libreoffice*
+sudo chroot ${BUILD_ROOT} apt-get -y auto-remove
+sudo chroot ${BUILD_ROOT} apt-get -y clean
 
-chroot ${BUILD_ROOT} ldconfig
+sudo chroot ${BUILD_ROOT} ldconfig
 cd ${BUILD_ROOT}
 wget https://github.com/chromebook-unity/create-usb/raw/refs/heads/main/first.sh
 chroot ${BUILD_ROOT} /first.sh
