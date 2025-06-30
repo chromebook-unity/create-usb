@@ -6,6 +6,7 @@
 
 - hp chromebook 11a - kappa
 - lenovo ideapad 3 chromebook 14 inch (mt8183 version) - fennel14
+- acer chromebook 314 (cb314-2h/cb314-2ht) - cozmo
 
 ## untested systems
 
@@ -19,7 +20,6 @@
 - lenovo ideapad flex 3 chromebook (mt8183 version) - fennel
 - asus chromebook flip cm3 (mt8183 version) - damu
 - asus chromebook cm3 - kakadu
-- acer chromebook 314 (cb314-2h/cb314-2ht) - cozmo
 - acer chromebook 311 - kenzo
 - lenovo 10e chromebook tablet - kodama
 - asus chromebook detachable cz1 - katsu
