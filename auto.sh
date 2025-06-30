@@ -159,8 +159,8 @@ if [[ "$mtk" == "mt8183" ]]; then
     wget https://github.com/velvet-os/imagebuilder/raw/refs/heads/main/systems/chromebook_kukui/postinstall.sh
 fi
 
-sudo chroot ${BUILD_ROOT} /postinstall-chroot.sh
-rm -rf ${BUILD_ROOT}/postinstall-chroot.sh
+sudo chroot ${BUILD_ROOT} /postinstall.sh
+rm -rf ${BUILD_ROOT}/postinstall.sh
 
 # recompile glib schemas to enable our onboard settings
 sudo chroot ${BUILD_ROOT} glib-compile-schemas /usr/share/glib-2.0/schemas/
