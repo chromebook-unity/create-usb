@@ -52,7 +52,7 @@ root=LABEL=unityroot
 BOOTSTRAP_ARCH="arm64"
 SERVER_PREFIX="ports."
 SERVER_POSTFIX=""
-LANG=C debootstrap --variant=minbase --arch=${BOOTSTRAP_ARCH} $prevrel ${BUILD_ROOT_CACHE} http://${SERVER_PREFIX}ubuntu.com/${SERVER_POSTFIX}
+LANG=C sudo debootstrap --variant=minbase --arch=${BOOTSTRAP_ARCH} $prevrel ${BUILD_ROOT_CACHE} http://${SERVER_PREFIX}ubuntu.com/${SERVER_POSTFIX}
 echo "deb http://ports.ubuntu.com/ubuntu-ports/ $rel-security restricted multiverse main universe" | tee cache/etc/apt/sources.list
 echo "deb http://ports.ubuntu.com/ubuntu-ports/ $rel-updates restricted multiverse main universe" | tee -a cache/etc/apt/sources.list
 echo "deb http://ports.ubuntu.com/ubuntu-ports/ $rel-backports restricted multiverse main universe" | tee -a cache/etc/apt/sources.list
