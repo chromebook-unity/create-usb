@@ -9,12 +9,6 @@ echo ""
 echo ""
 echo "Running a few checks..."
 
-if [[ $EUID -eq 0 ]]; then
-echo "Error: Do not run this script as root!" 1>&2
-echo "Solution: Run this script as a normal user without sudo."
-exit
-fi
-
 if ping -q -c 1 -W 1 google.com >/dev/null; then
   echo "You are online, continuing..."
   echo ""
