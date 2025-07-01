@@ -246,5 +246,5 @@ cd /
 umount -l ${MOUNT_POINT}
 sudo losetup -d /dev/loop0
 rmdir ${MOUNT_POINT}
-echo "Done. Your image is located at ${IMAGE_DIR}/ubuntuunity-$rel-$mtk$(date +"%B-%d-%Y").img"
+echo "Done. Your image is located at ${IMAGE_DIR}ubuntuunity-$rel-$mtk$(date +"%B-%d-%Y").img"
 echo "Summary: Ubuntu Unity $rel, built for $mtk, on $(date +"%B-%d-%Y")"
