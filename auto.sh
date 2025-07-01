@@ -172,6 +172,7 @@ sudo chroot ${BUILD_ROOT} apt-get -y clean
 sudo chroot ${BUILD_ROOT} ldconfig
 cd ${BUILD_ROOT}
 wget https://github.com/chromebook-unity/create-usb/raw/refs/heads/main/first.sh
+sudo chmod +x ${BUILD_ROOT}/first.sh
 chroot ${BUILD_ROOT} /first.sh
 cd ${WORKDIR}
 truncate -s 6000M ${IMAGE_DIR}/ubuntuunity-$rel-$mtk-$(date +"%B-%d-%Y").img
