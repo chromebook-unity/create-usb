@@ -217,13 +217,13 @@ rsync -axADHSX --no-inc-recursive ${BUILD_ROOT}/ ${MOUNT_POINT}
 date
 echo "done"
 
-btrfs subvolume create ${MOUNT_POINT}/swap
+sudo btrfs subvolume create ${MOUNT_POINT}/swap
 chmod 755 ${MOUNT_POINT}/swap
 chattr -R +C ${MOUNT_POINT}/swap
 truncate -s 0 ${MOUNT_POINT}/swap/file.0
 fallocate -l 512M ${MOUNT_POINT}/swap/file.0
 chmod 600 ${MOUNT_POINT}/swap/file.0
-mkswap -L swapfile.0 ${MOUNT_POINT}/swap/file.0
+sudo mkswap -L swapfile.0 ${MOUNT_POINT}/swap/file.0
 mount -o bind /dev ${MOUNT_POINT}/dev
 mount -o bind /dev/pts ${MOUNT_POINT}/dev/pts
 mount -o bind /run ${MOUNT_POINT}/run
@@ -242,7 +242,7 @@ mkdir ${MOUNT_POINT}/scripts
 cd ${MOUNT_POINT}/scripts
 wget https://raw.githubusercontent.com/velvet-os/imagebuilder/d740e50050ce93676c678a2a8bd4be51796c0108/files/extra-files/scripts/extend-rootfs.sh
 umount ${MOUNT_POINT}
-losetup -d /dev/loop0
+sudo losetup -d /dev/loop0
 rmdir ${MOUNT_POINT}
 echo "Done. Your image is located at ${IMAGE_DIR}/ubuntuunity-$rel-$mtk-$(date +"%B-%d-%Y").img"
 echo "Summary: Ubuntu Unity $rel, built for $mtk, on $(date +"%B-%d-%Y")"
