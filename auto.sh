@@ -230,8 +230,8 @@ mount -o bind /run ${MOUNT_POINT}/run
 mount -t sysfs /sys ${MOUNT_POINT}/sys
 mount -t proc /proc ${MOUNT_POINT}/proc
 cd ${MOUNT_POINT}/boot
-dd if=*vmlinux.kpart* of=/dev/loop0p1 bs=1M status=progress
-dd if=*vmlinux.kpart* of=/dev/loop0p2 bs=1M status=progress
+dd if=vmlinux.kpart-6.12.28-stb-cbm+ of=/dev/loop0p1 bs=1M status=progress
+dd if=vmlinux.kpart-6.12.28-stb-cbm+ of=/dev/loop0p2 bs=1M status=progress
 sudo touch ${MOUNT_POINT}/etc/fstab
 echo "LABEL=$ROOTPARTLABEL / btrfs defaults,ssd,compress-force=zstd,noatime,nodiratime 0 1" | tee -a ${MOUNT_POINT}/etc/fstab
 echo "LABEL=$BOOTPARTLABEL /boot ext4 defaults,noatime,nodiratime,errors=remount-ro 0 2" | tee -a ${MOUNT_POINT}/etc/fstab
