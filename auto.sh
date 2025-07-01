@@ -238,12 +238,12 @@ echo "LABEL=$BOOTPARTLABEL /boot ext4 defaults,noatime,nodiratime,errors=remount
 sed -i 's,LABEL=swappart,/swap/file.0,g' ${MOUNT_POINT}/etc/fstab
 echo "Cleaning up..."
 cd /
-umount ${MOUNT_POINT}/boot
+umount -l ${MOUNT_POINT}/boot
 mkdir ${MOUNT_POINT}/scripts
 cd ${MOUNT_POINT}/scripts
 wget https://raw.githubusercontent.com/velvet-os/imagebuilder/d740e50050ce93676c678a2a8bd4be51796c0108/files/extra-files/scripts/extend-rootfs.sh
 cd /
-umount ${MOUNT_POINT}
+umount -l ${MOUNT_POINT}
 sudo losetup -d /dev/loop0
 rmdir ${MOUNT_POINT}
 echo "Done. Your image is located at ${IMAGE_DIR}/ubuntuunity-$rel-$mtk-$(date +"%B-%d-%Y").img"
