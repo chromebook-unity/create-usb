@@ -176,7 +176,7 @@ sudo chmod +x ${BUILD_ROOT}/first.sh
 chroot ${BUILD_ROOT} /first.sh
 sudo rm -rf ${BUILD_ROOT}/first.sh
 cd ${WORKDIR}
-truncate -s 5187M ${IMAGE_DIR}/ubuntuunity-$rel-$mtk$(date +"%B-%d-%Y").img
+truncate -s 8192M ${IMAGE_DIR}/ubuntuunity-$rel-$mtk$(date +"%B-%d-%Y").img
 sudo losetup /dev/loop0 ${IMAGE_DIR}/ubuntuunity-$rel-$mtk$(date +"%B-%d-%Y").img
 umount ${BUILD_ROOT}/proc ${BUILD_ROOT}/sys ${BUILD_ROOT}/dev/pts ${BUILD_ROOT}/dev
 sudo sgdisk -Z /dev/loop0
@@ -188,18 +188,24 @@ sudo partprobe /dev/loop0
 
   # create the chomeos partition structure and reread it via partprobe
 cgpt create /dev/loop0
-partprobe /dev/loop0
+sudo partprobe /dev/loop0
 
 
 cgpt add -i 1 -t kernel -b 8192 -s 262144 -l KernelA -S 1 -T 2 -P 10 /dev/loop0
 cgpt add -i 2 -t kernel -b 270336 -s 262144 -l KernelB -S 0 -T 2 -P 5 /dev/loop0
 
 # this is to make sure we really use the new partition table and have all partitions around
-partprobe /dev/loop0
-
-mkfs -t ext4 -O ^has_journal -m 0 -L $BOOTPARTLABEL /dev/loop0p$BOOTPART
-
-mkfs -t btrfs -m single -L $ROOTPARTLABEL /dev/loop0p$ROOTPART
+sudo partprobe /dev/loop0
+sudo parted /dev/loop0 --script mkpart primary ext4 \
+  "$(echo "$(sudo parted /dev/loop0 unit MiB print | grep '^ 2' | awk '{print $3}' | tr -d 'MiB') + 1" | bc)MiB" \
+  "$(echo "$(sudo parted /dev/loop0 unit MiB print | grep '^ 2' | awk '{print $3}' | tr -d 'MiB') + 1024" | bc)MiB"
+sudo partprobe /dev/loop0
+sudo mkfs -t ext4 -O ^has_journal -m 0 -L $BOOTPARTLABEL /dev/loop0p$BOOTPART
+sudo parted /dev/loop0 --script mkpart primary ext4 \
+  "$(echo "$(sudo parted /dev/loop0 unit MiB print | grep '^ 3' | awk '{print $3}' | tr -d 'MiB') + 1" | bc)MiB" \
+  100%
+sudo partprobe
+sudo mkfs -t btrfs -m single -L $ROOTPARTLABEL /dev/loop0p$ROOTPART
 mount -o ssd,compress-force=zstd,noatime,nodiratime /dev/loop0p$ROOTPART ${MOUNT_POINT}
 
 mkdir ${MOUNT_POINT}/boot
