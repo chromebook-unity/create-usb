@@ -32,7 +32,7 @@ export MOUNT_POINT=$PWD/mnt/
 export IMAGE_DIR=$PWD/out/
 BOOTPARTLABEL="bootpart"
 ROOTPARTLABEL="rootpart"
-apt install binfmt-support qemu-user-static -y
+apt install binfmt-support qemu-user-static cgpt -y
 systemctl start binfmt-support.service
 
 if [[ "$mtk" == "mt8183" ]]; then
@@ -179,12 +179,12 @@ cd ${WORKDIR}
 truncate -s 5187M ${IMAGE_DIR}/ubuntuunity-$rel-$mtk$(date +"%B-%d-%Y").img
 sudo losetup /dev/loop0 ${IMAGE_DIR}/ubuntuunity-$rel-$mtk$(date +"%B-%d-%Y").img
 umount ${BUILD_ROOT}/proc ${BUILD_ROOT}/sys ${BUILD_ROOT}/dev/pts ${BUILD_ROOT}/dev
-sgdisk -Z /dev/loop0
-partprobe /dev/loop0
+sudo sgdisk -Z /dev/loop0
+sudo partprobe /dev/loop0
 
   # create a fresh partition table and reread it via partprobe
-sgdisk -C -e -G /dev/loop0
-partprobe /dev/loop0
+sudo sgdisk -C -e -G /dev/loop0
+sudo partprobe /dev/loop0
 
   # create the chomeos partition structure and reread it via partprobe
 cgpt create /dev/loop0
