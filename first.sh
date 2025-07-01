@@ -16,7 +16,7 @@ else
   echo "Error: You are offline."
   exit
 fi
-"Installing Unity Desktop..."
+echo "Installing Unity Desktop..."
 sudo apt update
 sudo apt install ubuntu-unity-desktop notification-daemon -y --no-install-recommends
 sudo apt install unity-tweak-tool indicator-* hud -y 
