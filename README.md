@@ -24,6 +24,14 @@
 - lenovo 10e chromebook tablet - kodama
 - asus chromebook detachable cz1 - katsu
 - hp chromebook 11mk g9 ee - burnet/esche
+- acer chromebook r13 - elm
+- lenovo chromebook 100e (mt8173 version) - hana
+- lenovo chromebook 300e (mt8173 version) - hana
+- lenovo chromebook n23 - hana
+- asus chromebook c202xa -
+- hanalenovo chromebook c330 - hana
+- lenovo chromebook s330 - hana
+- lenovo ideapad flex 3 chromebook (mt8173 version) - hana
 
 
 # Use the prebuilt disk image (recommended)
