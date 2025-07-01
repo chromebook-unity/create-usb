@@ -46,11 +46,11 @@ First, we will need to download the image file. Download the image you want in t
 
 ### Disk Image Releases (Hosted on MEGA.nz)
 
-[Ubuntu 22.04 (DEPRECATED - USE 24.04)](https://mega.nz/file/2McigCCK#qqGJ4vrkecRVWKscxhQ1kxS5uKA9Vl64hsRJG534QVs)
+[Ubuntu 22.04 - MT8183 ONLY (DEPRECATED - USE 24.04)](https://mega.nz/file/2McigCCK#qqGJ4vrkecRVWKscxhQ1kxS5uKA9Vl64hsRJG534QVs)
 
-[Ubuntu 23.10 - Wi-Fi BROKEN - DO NOT USE](https://mega.nz/file/LEtk3RLb#BCBwhxv7yO6SKarAlZj54r4979ANJRtV3qY6-bAuejM)
+[Ubuntu 23.10 - Wi-Fi BROKEN - MT8183 ONLY - DO NOT USE](https://mega.nz/file/LEtk3RLb#BCBwhxv7yO6SKarAlZj54r4979ANJRtV3qY6-bAuejM)
 
-[Ubuntu 24.04 - MAIN RELEASE](https://mega.nz/file/QMQCnKDS#JEQLL6gnerbfsRu_7zUJjf2zpLKSNSIOIMVOdu6q-vc)
+[Ubuntu 24.04 - MT8173, MT8183 CROSS PLATFORM - MAIN RELEASE](https://mega.nz/file/QMQCnKDS#JEQLL6gnerbfsRu_7zUJjf2zpLKSNSIOIMVOdu6q-vc)
 
 Now, open up a terminal and ```cd``` into the directory where the downloaded image is (usually ~/Downloads).
 
