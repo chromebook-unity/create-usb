@@ -25,11 +25,11 @@ mkdir download
 mkdir root
 mkdir mnt
 mkdir out
-export BUILD_ROOT=root/
-export BUILD_ROOT_CACHE=cache/
-export DOWNLOAD_DIR=download/
-export MOUNT_POINT=mnt/
-export IMAGE_DIR=out/
+export BUILD_ROOT=$PWD/root/
+export BUILD_ROOT_CACHE=$PWD/cache/
+export DOWNLOAD_DIR=$PWD/download/
+export MOUNT_POINT=$PWD/mnt/
+export IMAGE_DIR=$PWD/out/
 BOOTPARTLABEL="bootpart"
 ROOTPARTLABEL="rootpart"
 apt install binfmt-support qemu-user-static -y
