@@ -237,6 +237,7 @@ echo "LABEL=$ROOTPARTLABEL / btrfs defaults,ssd,compress-force=zstd,noatime,nodi
 echo "LABEL=$BOOTPARTLABEL /boot ext4 defaults,noatime,nodiratime,errors=remount-ro 0 2" | tee -a ${MOUNT_POINT}/etc/fstab
 sed -i 's,LABEL=swappart,/swap/file.0,g' ${MOUNT_POINT}/etc/fstab
 echo "Cleaning up..."
+cd /
 umount ${MOUNT_POINT}/boot
 mkdir ${MOUNT_POINT}/scripts
 cd ${MOUNT_POINT}/scripts
