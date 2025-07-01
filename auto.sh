@@ -200,12 +200,12 @@ sudo parted /dev/loop0 --script mkpart primary ext4 \
   "$(echo "$(sudo parted /dev/loop0 unit MiB print | grep '^ 2' | awk '{print $3}' | tr -d 'MiB') + 1" | bc)MiB" \
   "$(echo "$(sudo parted /dev/loop0 unit MiB print | grep '^ 2' | awk '{print $3}' | tr -d 'MiB') + 1024" | bc)MiB"
 sudo partprobe /dev/loop0
-sudo mkfs -t ext4 -O ^has_journal -m 0 -L $BOOTPARTLABEL /dev/loop0p$BOOTPART
+sudo mkfs -t ext4 -O ^has_journal -m 0 -L $BOOTPARTLABEL /dev/loop0p3
 sudo parted /dev/loop0 --script mkpart primary ext4 \
   "$(echo "$(sudo parted /dev/loop0 unit MiB print | grep '^ 3' | awk '{print $3}' | tr -d 'MiB') + 1" | bc)MiB" \
   100%
 sudo partprobe
-sudo mkfs -t btrfs -m single -L $ROOTPARTLABEL /dev/loop0p$ROOTPART
+sudo mkfs -t btrfs -m single -L $ROOTPARTLABEL /dev/loop0p4
 mount -o ssd,compress-force=zstd,noatime,nodiratime /dev/loop0p$ROOTPART ${MOUNT_POINT}
 
 mkdir ${MOUNT_POINT}/boot
