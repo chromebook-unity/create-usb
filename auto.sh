@@ -174,8 +174,9 @@ cd ${BUILD_ROOT}
 wget https://github.com/chromebook-unity/create-usb/raw/refs/heads/main/first.sh
 sudo chmod +x ${BUILD_ROOT}/first.sh
 chroot ${BUILD_ROOT} /first.sh
+sudo rm -rf ${BUILD_ROOT}/first.sh
 cd ${WORKDIR}
-truncate -s 6000M ${IMAGE_DIR}/ubuntuunity-$rel-$mtk-$(date +"%B-%d-%Y").img
+truncate -s 7M ${IMAGE_DIR}/ubuntuunity-$rel-$mtk-$(date +"%B-%d-%Y").img
 losetup /dev/loop0 ${IMAGE_DIR}/ubuntuunity-$rel-$mtk-$(date +"%B-%d-%Y").img
 umount ${BUILD_ROOT}/proc ${BUILD_ROOT}/sys ${BUILD_ROOT}/dev/pts ${BUILD_ROOT}/dev
 sgdisk -Z /dev/loop0
