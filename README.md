@@ -50,6 +50,7 @@ First, we will need to download the image file. Download the image you want in t
 
 [Ubuntu 23.10 - Wi-Fi BROKEN - DO NOT USE](https://mega.nz/file/LEtk3RLb#BCBwhxv7yO6SKarAlZj54r4979ANJRtV3qY6-bAuejM)
 
+[Ubuntu 24.04 - MAIN RELEASE](https://mega.nz/file/QMQCnKDS#JEQLL6gnerbfsRu_7zUJjf2zpLKSNSIOIMVOdu6q-vc)
 
 Now, open up a terminal and ```cd``` into the directory where the downloaded image is (usually ~/Downloads).
 
