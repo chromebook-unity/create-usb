@@ -1,0 +1,17 @@
+rel=noble
+prevrel=jammy
+WORKDIR=`pwd`
+POSSIBLE_TARGET_HOST="aarch64"
+mtk=mt8183
+BUILD_ROOT=/root/
+BUILD_ROOT_CACHE=/cache/
+DOWNLOAD_DIR=$PWD/download/
+MOUNT_POINT=$PWD/mnt/
+IMAGE_DIR=$PWD/out/
+BOOTPARTLABEL="bootpart"
+ROOTPARTLABEL="rootpart"
+DEFAULT_USERNAME=unity
+root=LABEL=unityroot
+BOOTSTRAP_ARCH="arm64"
+SERVER_PREFIX="ports."
+SERVER_POSTFIX=""
