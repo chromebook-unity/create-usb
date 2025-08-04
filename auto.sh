@@ -1,5 +1,4 @@
-rel=noble
-prevrel=jammy
+
 
 if [[ "$EUID" -ne 0 ]]; then
     echo "Script not ran as root, please enter your password to enter root.."
@@ -11,27 +10,14 @@ export DEBIAN_FRONTEND=noninteractive
 export LANG=C
 apt-get update
 apt-get -y install debootstrap btrfs-progs
-POSSIBLE_TARGET_HOST="aarch64"
-read -p "Choose platform (mt8183/mt8173): " mtk
-if [[ "$mtk" != "mt8183" && "$mtk" != "mt8173" ]]; then
-    echo "Invalid platform... exiting"
-    exit 1
-fi
 
 cd `dirname $0`/..
-export WORKDIR=`pwd`
 mkdir cache
 mkdir download
 mkdir root
 mkdir mnt
 mkdir out
-export BUILD_ROOT=/root/
-export BUILD_ROOT_CACHE=/cache/
-export DOWNLOAD_DIR=$PWD/download/
-export MOUNT_POINT=$PWD/mnt/
-export IMAGE_DIR=$PWD/out/
-BOOTPARTLABEL="bootpart"
-ROOTPARTLABEL="rootpart"
+
 apt install binfmt-support qemu-user-static cgpt -y
 systemctl start binfmt-support.service
 
@@ -45,12 +31,6 @@ if [[ "$mtk" == "mt8173" ]]; then
     source partition-mapping.txt
 fi 
 
-DEFAULT_USERNAME=unity
-root=LABEL=unityroot
-
-BOOTSTRAP_ARCH="arm64"
-SERVER_PREFIX="ports."
-SERVER_POSTFIX=""
 LANG=C sudo debootstrap --variant=minbase --arch=${BOOTSTRAP_ARCH} $prevrel ${BUILD_ROOT_CACHE} http://${SERVER_PREFIX}ubuntu.com/${SERVER_POSTFIX}
 echo "deb http://ports.ubuntu.com/ubuntu-ports/ $rel-security restricted multiverse main universe" | tee cache/etc/apt/sources.list
 echo "deb http://ports.ubuntu.com/ubuntu-ports/ $rel-updates restricted multiverse main universe" | tee -a cache/etc/apt/sources.list
