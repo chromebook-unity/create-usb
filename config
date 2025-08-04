@@ -1,5 +1,5 @@
-rel=noble
-prevrel=jammy
+rel=plucky
+prevrel=oracular
 WORKDIR=`pwd`
 POSSIBLE_TARGET_HOST="aarch64"
 mtk=mt8183
